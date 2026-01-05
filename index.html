@@ -3,92 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <title>Frontend Mentor | Interactive rating component</title>
+  <title>Interactive Rating Component</title>
+
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
- 
+
+  <style>
+    :root {
+      --orange-500: hsl(25, 97%, 53%);
+      --white: hsl(0, 100%, 100%);
+      --grey-500: hsl(217, 12%, 63%);
+      --grey-900: hsl(213, 19%, 18%);
+      --grey-950: hsl(216, 12%, 8%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Overpass', sans-serif;
+      background-color: var(--grey-950);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    main.container {
+      background-color: var(--grey-900);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .rating-state { display: block; }
+    .thank-you-state { display: none; text-align: center; }
+
+    .star-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--grey-950);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 { color: var(--white); font-size: 24px; margin-bottom: 15px; }
+    p { color: var(--grey-500); font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+
+    .rating-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+    .rating-button {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background-color: var(--grey-950);
+      color: var(--white);
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .rating-button:hover,
+    .rating-button.selected { background-color: var(--orange-500); }
+
+    .rating-button:focus-visible {
+      outline: 3px solid var(--orange-500);
+      outline-offset: 3px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 25px;
+      background-color: var(--orange-500);
+      color: var(--white);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .submit-btn:hover { background-color: #ff8a3d; }
+
+    .selected-rating {
+      color: var(--orange-500);
+      background-color: rgba(255,255,255,0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 20px 0;
+      font-weight: 700;
+    }
+
+    .illustration { margin-bottom: 20px; }
+    .illustration img { max-width: 100%; }
+
+    @media (max-width: 375px) {
+      h1 { font-size: 22px; }
+      .rating-button { width: 45px; height: 45px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Rating state start -->
-    <div class="rating-state">
-      <div class="header">
-        <span class="star-icon"><img src="images/icon-star.svg" alt="star-icon" srcset=""></span>
-         
-      </div>
-      <h1>How did we do?</h1>
-      <p>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
-      
-      <div class="rating-buttons">
-        <button class="rating-button" data-rating="1">1</button>
-        <button class="rating-button" data-rating="2">2</button>
-        <button class="rating-button" data-rating="3">3</button>
-        <button class="rating-button" data-rating="4">4</button>
-        <button class="rating-button" data-rating="5">5</button>
-      </div>
-      
-      <button class="submit-btn">Submit</button>
+
+<main class="container">
+
+  <!-- Rating State -->
+  <section class="rating-state">
+    <div class="star-icon">
+      <img src="images/icon-star.svg" alt="Star icon">
     </div>
-    <!-- Rating state end -->
 
-    <!-- Thank you state start -->
-    <div class="thank-you-state">
-      <div class="illustration">
-        <img src="images/illustration-thank-you.svg" alt="Rating illustration">
-      </div>
-      <div class="selected-rating">You selected <span id="rating-value">0</span> out of 5</div>
-      <h1>Thank you!</h1>
-      <p>We appreciate you taking the time to give a rating.<br>If you ever need more support, don't hesitate to get in touch!</p>
+    <h1>How did we do?</h1>
+    <p>Please let us know how we did with your support request. All feedback is appreciated!</p>
+
+    <div class="rating-buttons" role="radiogroup" aria-label="Rate your experience">
+      <button class="rating-button" role="radio" aria-checked="false" data-rating="1">1</button>
+      <button class="rating-button" role="radio" aria-checked="false" data-rating="2">2</button>
+      <button class="rating-button" role="radio" aria-checked="false" data-rating="3">3</button>
+      <button class="rating-button" role="radio" aria-checked="false" data-rating="4">4</button>
+      <button class="rating-button" role="radio" aria-checked="false" data-rating="5">5</button>
     </div>
-    <!-- Thank you state end -->
-  </div>
 
-  <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
+    <button class="submit-btn" type="button">SUBMIT</button>
+  </section>
 
-  <script>
-    // Get DOM elements
-    const ratingState = document.querySelector('.rating-state');
-    const thankYouState = document.querySelector('.thank-you-state');
-    const ratingButtons = document.querySelectorAll('.rating-button');
-    const submitButton = document.querySelector('.submit-btn');
-    const ratingValueDisplay = document.getElementById('rating-value');
-    
-    let selectedRating = 0;
+  <!-- Thank You State -->
+  <section class="thank-you-state">
+    <div class="illustration">
+      <img src="images/illustration-thank-you.svg" alt="Thank you illustration">
+    </div>
+    <div class="selected-rating" role="status" aria-live="polite">
+      You selected <span id="rating-value">0</span> out of 5
+    </div>
+    <h1 tabindex="-1">Thank you!</h1>
+    <p>We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!</p>
+  </section>
 
-    // Add event listeners to rating buttons
-    ratingButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove selected class from all buttons
-        ratingButtons.forEach(btn => btn.classList.remove('selected'));
-        
-        // Add selected class to clicked button
-        button.classList.add('selected');
-        
-        // Store the selected rating
-        selectedRating = parseInt(button.getAttribute('data-rating'));
+</main>
+
+<script>
+  const ratingButtons = document.querySelectorAll('.rating-button');
+  const submitBtn = document.querySelector('.submit-btn');
+  const ratingState = document.querySelector('.rating-state');
+  const thankYouState = document.querySelector('.thank-you-state');
+  const ratingValue = document.getElementById('rating-value');
+
+  let selectedRating = 0;
+
+  // Rating buttons
+  ratingButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      ratingButtons.forEach(btn => {
+        btn.classList.remove('selected');
+        btn.setAttribute('aria-checked', 'false');
       });
+      button.classList.add('selected');
+      button.setAttribute('aria-checked', 'true');
+      selectedRating = button.dataset.rating;
     });
 
-    // Add event listener to submit button
-    submitButton.addEventListener('click', () => {
-      if (selectedRating === 0) {
-        alert('Please select a rating before submitting!');
-        return;
+    // Arrow key navigation
+    button.addEventListener('keydown', (e) => {
+      let newIndex = index;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') newIndex = (index + 1) % ratingButtons.length;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') newIndex = (index - 1 + ratingButtons.length) % ratingButtons.length;
+      if (newIndex !== index) {
+        ratingButtons[newIndex].focus();
+        ratingButtons[newIndex].click();
+        e.preventDefault();
       }
-      
-      // Update the displayed rating
-      ratingValueDisplay.textContent = selectedRating;
-      
-      // Switch to thank you state
-      ratingState.style.display = 'none';
-      thankYouState.style.display = 'block';
     });
-  </script>
+  });
+
+  // Submit button
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // prevent form reload if inside a form
+
+    if (!selectedRating) {
+      alert('Please select a rating');
+      return;
+    }
+
+    ratingValue.textContent = selectedRating;
+    ratingState.style.display = 'none';
+    thankYouState.style.display = 'block';
+
+    // Focus thank you heading for screen readers
+    thankYouState.querySelector('h1').focus();
+  });
+
+  // Optional: ensure Enter/Space triggers click (bulletproof)
+  document.body.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
+</script>
+
 </body>
 </html>
+
+
+

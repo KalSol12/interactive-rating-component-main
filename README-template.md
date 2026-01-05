@@ -5,7 +5,7 @@ This is a solution to the [Interactive rating component challenge on Frontend Me
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
+  - [The challenge](#accessibilty)
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
@@ -43,7 +43,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Add solution URL here]()
 - Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
 ## My process
@@ -100,7 +100,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
+- Website - [kaleab tenkir](https://www.your-site.com)
 - Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
 - Twitter - [@yourusername](https://www.twitter.com/yourusername)
 
